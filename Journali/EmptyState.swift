@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EmptyState: View {
+    @State private var isSheetPresented = false
     var body: some View {
         NavigationStack{
   
@@ -50,16 +51,37 @@ struct EmptyState: View {
                     Image(systemName: "plus")
                             .font(.title3)
                         .foregroundColor(Color(red: 0.8313725490196079, green: 0.7843137254901961, blue: 1.0))
+                        .onTapGesture {isSheetPresented.toggle()}
                     }//END of zstack
                 }//end of icon HStack
                 .padding(.top)
-            }
-            }
+            }//End of for toolbar 01
+          }//End of for toolbar 02
+            .sheet(isPresented: $isSheetPresented){
+                NewJournalEntrySheet()
+            }//end of sheet
         }//end of navigation stack
-        
-        
     }//end of body
+        
 }//end of struct
+
+struct NewJournalEntrySheet: View {
+    var body: some View {
+        VStack {
+            Text("Create New Journal Entry")
+                .font(.title)
+                .padding()
+            
+            // Add your form fields or content for creating a new journal entry
+            Button("Close") {
+                // Close the sheet (Handled automatically by parent view)
+            }
+            .font(.headline)
+            .padding()
+        }
+    }
+}
+
     #Preview {
         EmptyState()
     }
