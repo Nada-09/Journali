@@ -17,12 +17,12 @@ struct EmptyState: View {
                     .imageScale(.large)
                 
                 Text("Begin Your Journal")
-                    .font(.largeTitle)
+                    .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color(red: 0.8313725490196079, green: 0.7843137254901961, blue: 1.0))
                 
                 Text("Craft your personal diary, tap the plus icon to begin")
-                    .font(.title2)
+                    .font(.title3)
                     .multilineTextAlignment(.center)
                     .fontWeight(.light)
                     .padding(.horizontal, 40)
