@@ -9,20 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image("url")
-                .imageScale(.large)
-
-            Text("Journali")
-                .font(.largeTitle)
-                .fontWeight(.black)
-            
-            Text("Your thoughts, your story")
-                .fontWeight(.light)
+        
+            VStack {
+                Image("url")
+                    .imageScale(.large)
                 
+                Text("Journali")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                
+                Text("Your thoughts, your story")
+                    .fontWeight(.light)
+                
+            }
+            .padding()
         }
-        .padding()
-    }
+
 }
 
 #Preview {
