@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct EmptyState: View {
-    @State private var isSheetPresented = false
+    @State private var title: String = ""
+    @State private var content: String = ""
+    @State private var showSheet = false
+    @State private var currentDate = ""
     var body: some View {
         NavigationStack{
-  
-            
+              
             VStack {
                 Image("url")
                     .imageScale(.large)
@@ -51,37 +53,83 @@ struct EmptyState: View {
                     Image(systemName: "plus")
                             .font(.title3)
                         .foregroundColor(Color(red: 0.8313725490196079, green: 0.7843137254901961, blue: 1.0))
-                        .onTapGesture {isSheetPresented.toggle()}
+                        .onTapGesture {showSheet.toggle()}
                     }//END of zstack
                 }//end of icon HStack
                 .padding(.top)
             }//End of for toolbar 01
           }//End of for toolbar 02
-            .sheet(isPresented: $isSheetPresented){
-                NewJournalEntrySheet()
-            }//end of sheet
+            
+            
+            
+            
+            .sheet(isPresented: $showSheet, content: {
+                VStack{
+                    HStack {
+                        Button("Cancel") {
+                            showSheet.toggle()
+                            
+                        }// Close Cancel
+                        .foregroundColor(Color(red: 0.6431372549019608, green: 0.6, blue: 1.0))
+                        .fontWeight(.regular)
+                        
+                        Spacer()
+                        
+                        Button("Save") {
+                            
+                        }// Close Save
+                        .foregroundColor(Color(red: 0.6431372549019608, green: 0.6, blue: 1.0))
+                        .fontWeight(.bold)
+                        
+                    }//end of HsTACK of cancel and save
+
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        TextField("Title", text: $title)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        
+                        Text(currentDate)
+                            .foregroundColor(.gray)
+                            .fontWeight(.regular)
+                        
+                        ZStack(alignment: .topLeading){
+                            if content.isEmpty{
+                                Text("Type your Journal…")
+                                //.font(.title2)
+                                //  .fontWeight(.regular)
+                                    .foregroundColor(.gray)
+                                    .padding(.top, 8)
+                                    .padding(.horizontal, 4)
+                                    .background(Color.clear)
+                            }//end of if
+                            
+                            TextEditor( text: $content)
+                                .frame(maxHeight: .infinity)
+                                .foregroundColor(.white)
+                                .fontWeight(.regular)
+                                .font(.title3)
+                                .padding(.top, 8)
+                        }//end od zstack of if statement
+                        Spacer()
+                    }//End of Vstack of entry
+                }//end of Vstack of the sheet
+                  
+                    .padding()
+                    .interactiveDismissDisabled()
+  
+            })//End of Sheet content
+            
         }//end of navigation stack
     }//end of body
         
 }//end of struct
 
-struct NewJournalEntrySheet: View {
-    var body: some View {
-        VStack {
-            Text("Create New Journal Entry")
-                .font(.title)
-                .padding()
-            
-            // Add your form fields or content for creating a new journal entry
-            Button("Close") {
-                // Close the sheet (Handled automatically by parent view)
-            }
-            .font(.headline)
-            .padding()
-        }
-    }
-}
 
+                   
+                   
+                   
     #Preview {
         EmptyState()
     }
