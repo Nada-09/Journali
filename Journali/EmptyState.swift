@@ -1,9 +1,6 @@
-//
 //  EmptyState.swift
 //  Journali
-//
 //  Created by Nada Abdullah on 20/04/1446 AH.
-//
 
 import SwiftUI
 
@@ -127,8 +124,6 @@ struct EmptyState: View {
 }//end of struct
 
 
-                   
-                   
                    
     #Preview {
         EmptyState()

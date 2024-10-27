@@ -10,14 +10,44 @@ import SwiftUI
 struct MainPage: View {
     @State private var showSheet = false
     @State private var searchTerm = ""
+    
     var body: some View {
         NavigationStack{
-              
-            VStack {
+    
+
+            ZStack {
+         
+                
+                RoundedRectangle(cornerRadius: 14)
+                    .frame(width: 350, height: 227, alignment: .topLeading)
+                    .foregroundColor(Color(red: 0.09019607843137255, green: 0.09019607843137255, blue: 0.09803921568627451))
                 
                 
+                    
+                
+                Image(systemName: "bookmark")
+                    .foregroundColor(Color(red: 0.831, green: 0.7843137254901961, blue: 1.0))
+                    .frame(width: 25, height: 29)
+                    
                 
             }// end of VSTack of the middle section
+           
+            
+            
+            
+         //   .swipeActions{
+          //      Button(role: .destructive){
+                    //DELETE
+       //         }//end of button
+          //      label: {
+         //           Label("Delete", systemImage: "Trash.fill")
+        //        }//end of label
+       //     }//end of swipe
+            
+            
+            
+            
+            
             
             .searchable(text: $searchTerm, prompt: "Search")
             .navigationTitle("Journal")
