@@ -90,7 +90,7 @@ struct EmptyState: View {
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                         
-                        Text(currentDate)
+                        Text("27/10/2024")
                             .foregroundColor(.gray)
                             .fontWeight(.regular)
                         
