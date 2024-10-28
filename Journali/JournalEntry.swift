@@ -9,7 +9,8 @@ import Foundation
 
 struct JournalEntry: Identifiable {
     let id = UUID()  // Unique identifier for each entry
-    let title: String  // Title of the journal entry
-    let date: String  // Date as a formatted string
-    let content: String  // Content of the journal entry
+    var title: String  // Title of the journal entry
+    var date: String  // Date as a formatted string
+    var content: String  // Content of the journal entry
+    //add bookmark icon
 }

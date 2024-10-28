@@ -15,12 +15,23 @@ class JournaliAppMVVM : ObservableObject {
         ]
         
         func addEntry(title: String, content: String) {
-            let newEntry = JournalEntry(title: title, date: Date().formatted(), content: content)
-            entries.insert(newEntry, at: 0) // Add new entry at the top
+            let newEntry = JournalEntry(title: title, date: Date().formatted(date: .abbreviated, time: .omitted), content: content)
+            entries.insert(newEntry, at: 0)
         }
         
         func deleteEntry(at indexSet: IndexSet) {
             entries.remove(atOffsets: indexSet)
         }
+        
+        // Function to edit an entry
+        func editEntry(id: UUID, newTitle: String, newContent: String) {
+            if let index = entries.firstIndex(where: { $0.id == id }) {
+                entries[index].title = newTitle
+                entries[index].content = newContent
+                entries[index].date = Date().formatted(date: .abbreviated, time: .omitted)  // Update date to current date
+            }
+        }
+    
+    
     }
 

@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isActive = false
     var body: some View {
-        
+        if isActive {
+                    EmptyStateNew()  // Show EmptyStateNew after splash screen
+        } else {
             VStack {
                 Image("url")
                     .imageScale(.large)
@@ -23,6 +26,15 @@ struct ContentView: View {
                 
             }
             .padding()
+            .onAppear {
+                // Delay for 2 seconds, then show EmptyStateNew
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        isActive = true
+                    }
+                }
+            }
+        }
         }
 
 }

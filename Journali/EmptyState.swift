@@ -5,10 +5,13 @@
 import SwiftUI
 
 struct EmptyState: View {
-    @State private var title: String = ""
-    @State private var content: String = ""
+    @StateObject private var viewModel = JournaliAppMVVM()
     @State private var showSheet = false
+    @State private var newEntryTitle = ""
+    @State private var newEntryContent = ""
     @State private var currentDate = ""
+  
+   
     var body: some View {
         NavigationStack{
               
@@ -73,7 +76,9 @@ struct EmptyState: View {
                         Spacer()
                         
                         Button("Save") {
-                            
+                            viewModel.addEntry(title: newEntryTitle, content: newEntryContent)
+                            newEntryTitle = ""
+                            newEntryContent = ""
                         }// Close Save
                         .foregroundColor(Color(red: 0.6431372549019608, green: 0.6, blue: 1.0))
                         .fontWeight(.bold)
@@ -82,7 +87,7 @@ struct EmptyState: View {
 
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        TextField("Title", text: $title)
+                        TextField("Title", text: $newEntryTitle)
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -92,7 +97,7 @@ struct EmptyState: View {
                             .fontWeight(.regular)
                         
                         ZStack(alignment: .topLeading){
-                            if content.isEmpty{
+                            if newEntryContent.isEmpty{
                                 Text("Type your Journal…")
                                 //.font(.title2)
                                 //  .fontWeight(.regular)
@@ -102,7 +107,7 @@ struct EmptyState: View {
                                     .background(Color.clear)
                             }//end of if
                             
-                            TextEditor( text: $content)
+                            TextEditor(text: $newEntryContent)
                                 .frame(maxHeight: .infinity)
                                 .foregroundColor(.white)
                                 .fontWeight(.regular)
