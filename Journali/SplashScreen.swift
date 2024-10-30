@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isActive = false
+    @StateObject private var viewModel = JournaliAppMVVM()  // Create viewModel instance
+    
     var body: some View {
         if isActive {
-                    EmptyStateNew()  // Show EmptyStateNew after splash screen
+                    EmptyStateNew(viewModel: viewModel) // Pass viewModel to EmptyStateNew
         } else {
             VStack {
                 Image("url")

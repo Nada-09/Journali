@@ -52,16 +52,17 @@ struct JournalEntryView: View {
             }
             .padding()
         }
+        .clipShape(RoundedRectangle(cornerRadius: 14)) // Apply rounded shape to entire view
         .swipeActions(edge: .leading) {  // Right-swipe for edit
             Button {
                 onEdit()  // Call edit action
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
-            .tint(.blue)
+            
         }
         .swipeActions(edge: .trailing) {  // Left-swipe for delete
-            Button(role: .destructive) {
+            Button (role: .destructive) {
                 onDelete()  // Call delete action
             } label: {
                 Label("Delete", systemImage: "trash.fill")
